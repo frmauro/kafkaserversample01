@@ -17,6 +17,12 @@ public class ProducerController : ControllerBase
     }
 
 
+    public IActionResult Get(string msg)
+    {
+        return Created("", SendMessageByKafka(msg));
+    }
+
+
     private string SendMessageByKafka(string message)
     {
         var config = new ProducerConfig { BootstrapServers = "localhost:9092" };
