@@ -21,7 +21,7 @@ public class MessageHandler : IHostedService
 
             using (var c = new ConsumerBuilder<Ignore, string>(conf).Build())
             {
-                c.Subscribe("fila_produto");
+                c.Subscribe("updateamount");
                 var cts = new CancellationTokenSource();
 
                 try
