@@ -15,12 +15,14 @@ docker inspect kafka -f "{{json .NetworkSettings.Networks }}"
 docker pull spotify/kafka
 
 # Create the docker container using the downloaded image
-docker run -d -p 2181:2181 -p 9092:9092 --name kafka --env ADVERTISED_HOST=127.0.0.1 --env ADVERTISED_PORT=9092 spotify/kafka
+docker run -d -p 2181:2181 -p 9092:9092 --name kafka -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092   --env ADVERTISED_PORT=9092 spotify/kafka
 
 
 ## list of commands KAFKA in docker
 # Open your terminal and exec inside the kafka container
 docker exec -it kafka bash
+# Once in the container, goto the below path
+cd /opt/kafka_2.11-0.10.1.0/
 
 bin/kafka-topics.sh --list --zookeeper localhost:2181
 
